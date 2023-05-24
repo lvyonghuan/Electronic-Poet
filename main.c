@@ -4,6 +4,7 @@
 **/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //函数区
 int Input(); //输入处理
@@ -15,6 +16,7 @@ char *SelectNoun();//选择名词
 char *SelectVerb();//选择动词
 char *SelectAdj();//选择形容词
 char *SpliceSentence();//拼接句子
+int PrintfSentence();//打印句子（逐行打印）
 
 int ReadFile(); //读取字典内容，错误返回1
 void EndProgram();//释放内存
@@ -52,7 +54,7 @@ adjective *adj_head = NULL;
 sentence *sentence_head = NULL;
 
 int main() {
-    int err = ReadFile();
+    int err = ReadFile();//先读取外存字典内容进入内存
     if (err) {
         return 1;
     }
@@ -94,12 +96,17 @@ int ReadFile() {
         //读取内容
         char temp[100];
         while (fgets(temp, sizeof(temp), file) != NULL) {
+            //去除每行末尾的换行符
+            size_t len = strlen(temp);
+            if (len > 0 && temp[len-1] == '\n') {
+                temp[len-1] = '\0';
+            }
             line[i]++;
             //链表延长，按情况进行
             switch (i) {
                 case 0: {
                     noun *noun_node = (noun *) malloc(sizeof(noun));
-                    noun_node->data=temp;
+                    noun_node->data=strdup(temp);//使用strdup函数。分配独立内存并复制数据
                     noun_node->next=NULL;
                     noun_tail->next=noun_node;
                     noun_tail=noun_node;
@@ -107,7 +114,7 @@ int ReadFile() {
                 }
                 case 1: {
                     verb *verb_node = (verb *) malloc(sizeof(verb));
-                    verb_node->data=temp;
+                    verb_node->data=strdup(temp);
                     verb_node->next=NULL;
                     verb_tail->next=verb_node;
                     verb_tail=verb_node;
@@ -115,7 +122,7 @@ int ReadFile() {
                 }
                 case 2:{
                     adjective *adj_node = (adjective*) malloc(sizeof (adjective));
-                    adj_node->data=temp;
+                    adj_node->data=strdup(temp);
                     adj_node->next=NULL;
                     adj_tail->next=adj_node;
                     adj_tail=adj_node;
@@ -123,7 +130,7 @@ int ReadFile() {
                 }
                 case 3:{
                     sentence *sentence_node=(sentence*) malloc(sizeof (sentence));
-                    sentence_node->data=temp;
+                    sentence_node->data=strdup(temp);
                     sentence_node->next=NULL;
                     sentence_tail->next=sentence_node;
                     sentence_tail=sentence_node;
