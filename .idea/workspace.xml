@@ -24,10 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1e66fa4-b9a1-4189-b1b7-fe2e5b2b2ab8" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/noun" beforeDir="false" afterPath="$PROJECT_DIR$/noun" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +69,16 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="C/C++ 文件.main.c">
+  <component name="RunManager" selected="C/C++ 文件.debug.c">
     <configuration name="Electronic_Poet" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Electronic_Poet" TARGET_NAME="Electronic_Poet" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Electronic_Poet" RUN_TARGET_NAME="Electronic_Poet">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="debug.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Electronic-Poet" TARGET_NAME="debug.c" CONFIG_NAME="debug.c">
+      <option name="sourceFile" value="debug.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="main.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Electronic-Poet" TARGET_NAME="main.c" CONFIG_NAME="main.c">
@@ -86,6 +89,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="C/C++ 文件.debug.c" />
         <item itemvalue="C/C++ 文件.main.c" />
       </list>
     </recent_temporary>
@@ -101,7 +105,8 @@
       <workItem from="1684849291489" duration="3356000" />
       <workItem from="1684884151802" duration="409000" />
       <workItem from="1684884600633" duration="89000" />
-      <workItem from="1684884735453" duration="11241000" />
+      <workItem from="1684884735453" duration="11796000" />
+      <workItem from="1684903270645" duration="15000" />
     </task>
     <servers />
   </component>

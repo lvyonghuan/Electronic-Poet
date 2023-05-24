@@ -5,21 +5,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 //函数区
 int Input(); //输入处理
-int Start(int line); //开始生成流程
+int Start(); //开始生成流程
 
 char *SelectSentence();//选择句式
-int AnalyzeSentence(int *nounNum,int *VerbNum,int *AdjNum);//解析句式，传指针获取句子中名词、动词、形容词数量
 char *SelectNoun();//选择名词
 char *SelectVerb();//选择动词
 char *SelectAdj();//选择形容词
-char *SpliceSentence();//拼接句子
-int PrintfSentence();//打印句子（逐行打印）
+int SpliceSentence(char *sentence);//拼接句子并打印
 
 int ReadFile(); //读取字典内容，错误返回1
-void EndProgram();//释放内存
+void EndProgram();//释放内存（然而操作系统好像会自动回收）
 
 //结构体区
 
@@ -58,13 +57,9 @@ int main() {
     if (err) {
         return 1;
     }
-    int l = Input();
-    if (!l) {
-        return 1;//程序异常状态退出
-    }
-    err=Start(l);
+    err=Start();
     if(err){
-        return 1;
+        return 2;
     }
     EndProgram();
     return 0;
@@ -167,6 +162,25 @@ void EndProgram(){
     }
 }
 
+//控制生成进程
+int Start() {
+    int l = Input();
+    if (!l) {
+        return 1;//程序异常状态退出
+    }
+    for(int i=0;i<l;i++){
+        char *sentence=SelectSentence();
+        if(sentence==NULL){
+            return 1;
+        }
+        int err=SpliceSentence(sentence);
+        if(err){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int Input() {
     int l = 0;
     printf("请输入要生成的诗的行数：\n");
@@ -178,6 +192,81 @@ int Input() {
     return l;
 }
 
-int Start(int l) {
+char *SelectSentence(){
+    srand(time(NULL));//设置随机数种子
+    int random=rand()%line[3];
+    int count=0;
+    for(sentence *i=sentence_head;count<=random;i=i->next,count++){
+        if(count==random){
+            return i->data;
+        }
+    }
+    return NULL;
+}
 
+int SpliceSentence(char *sentence){
+    while (*sentence!='\0'){
+        if(*sentence=='n'){
+            char *n=SelectNoun();
+            if(n==NULL){
+                printf("选择名词错误！\n");
+                return 1;
+            }
+            printf("%s",n);
+        }else if(*sentence=='v'){
+            char *v=SelectVerb();
+            if(v==NULL){
+                printf("选择动词错误！\n");
+                return 1;
+            }
+            printf("%s",v);
+        }else if(*sentence=='a'){
+            char *a=SelectAdj();
+            if(a==NULL){
+                printf("选择形容词错误！\n");
+                return 1;
+            }
+            printf("%s",a);
+        }else{
+            printf("%c",*sentence);
+        }
+        *sentence++;
+    }
+    printf("\n");
+}
+
+char *SelectNoun(){
+    srand(time(NULL));//设置随机数种子
+    int random=rand()%line[0];
+    int count=0;
+    for(noun *i=noun_head;count<=random;i=i->next,count++){
+        if(count==random){
+            return i->data;
+        }
+    }
+    return NULL;
+}
+
+char *SelectVerb(){
+    srand(time(NULL));//设置随机数种子
+    int random=rand()%line[1];
+    int count=0;
+    for(verb *i=verb_head;count<=random;i=i->next,count++){
+        if(count==random){
+            return i->data;
+        }
+    }
+    return NULL;
+}
+
+char *SelectAdj(){
+    srand(time(NULL));//设置随机数种子
+    int random=rand()%line[2];
+    int count=0;
+    for(adjective *i=adj_head;count<=random;i=i->next,count++){
+        if(count==random){
+            return i->data;
+        }
+    }
+    return NULL;
 }
