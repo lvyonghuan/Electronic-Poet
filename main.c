@@ -168,6 +168,7 @@ int Start() {
     if (!l) {
         return 1;//程序异常状态退出
     }
+    srand(time(NULL));//设置随机数种子
     for(int i=0;i<l;i++){
         char *sentence=SelectSentence();
         if(sentence==NULL){
@@ -193,10 +194,9 @@ int Input() {
 }
 
 char *SelectSentence(){
-    srand(time(NULL));//设置随机数种子
     int random=rand()%line[3];
     int count=0;
-    for(sentence *i=sentence_head;count<=random;i=i->next,count++){
+    for(sentence *i=sentence_head->next;count<=random&&i!=NULL;i=i->next,count++){
         if(count==random){
             return i->data;
         }
@@ -233,13 +233,13 @@ int SpliceSentence(char *sentence){
         *sentence++;
     }
     printf("\n");
+    return 0;
 }
 
 char *SelectNoun(){
-    srand(time(NULL));//设置随机数种子
     int random=rand()%line[0];
     int count=0;
-    for(noun *i=noun_head;count<=random;i=i->next,count++){
+    for(noun *i=noun_head->next;count<=random&&i!=NULL;i=i->next,count++){
         if(count==random){
             return i->data;
         }
@@ -248,10 +248,9 @@ char *SelectNoun(){
 }
 
 char *SelectVerb(){
-    srand(time(NULL));//设置随机数种子
     int random=rand()%line[1];
     int count=0;
-    for(verb *i=verb_head;count<=random;i=i->next,count++){
+    for(verb *i=verb_head->next;count<=random&&i!=NULL;i=i->next,count++){
         if(count==random){
             return i->data;
         }
@@ -260,10 +259,9 @@ char *SelectVerb(){
 }
 
 char *SelectAdj(){
-    srand(time(NULL));//设置随机数种子
     int random=rand()%line[2];
     int count=0;
-    for(adjective *i=adj_head;count<=random;i=i->next,count++){
+    for(adjective *i=adj_head->next;count<=random&&i!=NULL;i=i->next,count++){
         if(count==random){
             return i->data;
         }
