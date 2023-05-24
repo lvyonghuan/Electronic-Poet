@@ -23,7 +23,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1e66fa4-b9a1-4189-b1b7-fe2e5b2b2ab8" name="变更" comment="" />
+    <list default="true" id="c1e66fa4-b9a1-4189-b1b7-fe2e5b2b2ab8" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/adjective" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/noun" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentence" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/verb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +103,7 @@
       <workItem from="1684849291489" duration="3356000" />
       <workItem from="1684884151802" duration="409000" />
       <workItem from="1684884600633" duration="89000" />
-      <workItem from="1684884735453" duration="2002000" />
+      <workItem from="1684884735453" duration="5613000" />
     </task>
     <servers />
   </component>

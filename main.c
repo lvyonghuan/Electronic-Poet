@@ -123,17 +123,40 @@ int ReadFile() {
     return 0;
 }
 
+int EndProgram(){
+    for(noun *i=noun_head;i!=NULL;){
+        noun *next=i->next;
+        free(i);
+        i=next;
+    }
+    for(verb *i=verb_head;i!=NULL;){
+        verb *next=i->next;
+        free(i);
+        i=next;
+    }
+    for(adjective *i=adj_head;i!=NULL;){
+        adjective *next=i->next;
+        free(i);
+        i=next;
+    }
+    for(sentence* i=sentence_head;i!=NULL;){
+        sentence *next=i->next;
+        free(i);
+        i=next;
+    }
+}
+
 int Input() {
     int l = 0;
     printf("请输入要生成的诗的行数：\n");
     int flag = scanf("%d", &l);
-    if (flag || l <= 0) {
+    if (!flag || l <= 0) {
         printf("输入格式不正确，程序退出！\n");
         return 0;
     }
     return l;
 }
 
-int Start(int line) {
+int Start(int l) {
 
 }
