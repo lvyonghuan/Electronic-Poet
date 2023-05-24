@@ -8,7 +8,16 @@
 //函数区
 int Input(); //输入处理
 int Start(int line); //开始生成流程
+
+char *SelectSentence();//选择句式
+int AnalyzeSentence(int *nounNum,int *VerbNum,int *AdjNum);//解析句式，传指针获取句子中名词、动词、形容词数量
+char *SelectNoun();//选择名词
+char *SelectVerb();//选择动词
+char *SelectAdj();//选择形容词
+char *SpliceSentence();//拼接句子
+
 int ReadFile(); //读取字典内容，错误返回1
+void EndProgram();//释放内存
 
 //结构体区
 
@@ -51,6 +60,11 @@ int main() {
     if (!l) {
         return 1;//程序异常状态退出
     }
+    err=Start(l);
+    if(err){
+        return 1;
+    }
+    EndProgram();
     return 0;
 }
 
@@ -123,7 +137,7 @@ int ReadFile() {
     return 0;
 }
 
-int EndProgram(){
+void EndProgram(){
     for(noun *i=noun_head;i!=NULL;){
         noun *next=i->next;
         free(i);
