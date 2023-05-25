@@ -164,19 +164,29 @@ void EndProgram(){
 
 //控制生成进程
 int Start() {
-    int l = Input();
-    if (!l) {
-        return 1;//程序异常状态退出
-    }
-    srand(time(NULL));//设置随机数种子
-    for(int i=0;i<l;i++){
-        char *sentence=SelectSentence();
-        if(sentence==NULL){
-            return 1;
+    for(;;) {
+        int l = Input();
+        if (!l) {
+            return 1;//程序异常状态退出
         }
-        int err=SpliceSentence(sentence);
-        if(err){
-            return 1;
+        srand(time(NULL));//设置随机数种子
+        printf("电子诗人咏唱中：\n");
+        for (int i = 0; i < l; i++) {
+            char *sentence = SelectSentence();
+            if (sentence == NULL) {
+                return 1;
+            }
+            int err = SpliceSentence(sentence);
+            if (err) {
+                return 1;
+            }
+        }
+        printf("是否继续生成？是请输入Y，否输入除Y的任意键结束生成。\n");
+        char flag;
+        getchar();
+        scanf("%c",&flag);
+        if(flag!='Y'){
+            break;
         }
     }
     return 0;
