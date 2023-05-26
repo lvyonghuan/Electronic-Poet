@@ -206,16 +206,16 @@ int Start() {
 		if(!isFailStore){
 			printf("是否储存诗句？是请按Y，否输入除Y的任意键：");
 			getchar();
-			scanf("%c",&flag);
+			flag=getchar();
 			if(flag=='Y'){
 				WriteFile(poetry_head);
+				getchar();
 			}else{
 				FreePoetry(poetry_head);
 			}
 		}
 		printf("是否继续生成？是请输入Y，否输入除Y的任意键结束生成：");
-		getchar();
-		scanf("%c",&flag);
+		flag=getchar();
 		if(flag!='Y'){
 			break;
 		}
@@ -247,7 +247,7 @@ char *SelectSentence(){
 
 int SpliceSentence(char *sentence,int isFailStore,poetry **tail){
 	char* str = (char*)malloc(sizeof(char) * 50);
-	memset(str,0,sizeof(char)*50);
+	memset(str,0,sizeof(char)*50);//清空，完成初始化，防止乱码
 	while (*sentence!='\0'){
 		if(*sentence=='n'){
 			char *n=SelectNoun();
