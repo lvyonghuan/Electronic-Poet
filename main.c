@@ -62,6 +62,8 @@ int ReadFile(); //读取字典内容，错误返回1
 void EndProgram();//释放内存（然而操作系统好像会自动回收）
 
 int main() {
+    printf("欢迎使用电子诗人，版本v1.0.0-alpha\n");
+    printf("说明：本产品以抽象诗为特色，输入诗词的行数，即可创作出对应行数的作品\n");
 	int err = ReadFile();//先读取外存字典内容进入内存
 	if (err) {
 		return 1;
@@ -175,10 +177,16 @@ void EndProgram(){
 //控制生成进程
 int Start() {
 	for(;;) {
-		int l = Input();
-		if (!l) {
-			return 1;//程序异常状态退出
-		}
+        int l = 0;
+        while(1) {
+            l=Input();
+            if (!l) {
+				char temp[1000];
+				gets(temp);
+                continue;
+            }
+            break;
+        }
 		srand(time(NULL));//设置随机数种子
 		//初始化存储模块
 		int isFailStore=0;
@@ -191,7 +199,7 @@ int Start() {
 		}
 		poetry_head->data=NULL;
 		poetry_head->next=NULL;
-		printf("电子诗人咏唱中：\n");
+		printf("电子诗人咏唱中：\n————————————\n");
 		for (int i = 0; i < l; i++) {
 			char *sentence = SelectSentence();
 			if (sentence == NULL) {
@@ -204,7 +212,7 @@ int Start() {
 		}
 		char flag;
 		if(!isFailStore){
-			printf("是否储存诗句？是请按Y，否输入除Y的任意键：");
+			printf("————————————\n是否储存诗句？是请按Y，否输入除Y的任意键：");
 			getchar();
 			flag=getchar();
 			if(flag=='Y'){
@@ -214,7 +222,7 @@ int Start() {
 				FreePoetry(poetry_head);
 			}
 		}
-		printf("是否继续生成？是请输入Y，否输入除Y的任意键结束生成：");
+		printf("————————————\n是否继续生成？是请输入Y，否输入除Y的任意键结束生成：");
 		flag=getchar();
 		if(flag!='Y'){
 			break;
@@ -225,10 +233,10 @@ int Start() {
 
 int Input() {
 	int l = 0;
-	printf("请输入要生成的诗的行数：\n");
+	printf("————————————\n请输入要生成的诗的行数：");
 	int flag = scanf("%d", &l);
 	if (!flag || l <= 0) {
-		printf("输入格式不正确，程序退出！\n");
+		printf("输入格式不正确，请重新输入！\n");
 		return 0;
 	}
 	return l;
